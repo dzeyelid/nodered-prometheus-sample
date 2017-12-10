@@ -1,0 +1,19 @@
+version: "3"
+services:
+  prometheus:
+    image: prom/prometheus
+    container_name: prometheus
+    volumes:
+      - ./docker/prometheus/config/prometheus.yml:/etc/prometheus/prometheus.yml
+    ports:
+      - "9090:9090"
+  nodered:
+    image: nodered/node-red-docker
+    container_name: nodered
+    volumes:
+      - ./data:/data
+      - ./nodes:/nodes
+    ports:
+      - "1880:1880"
+    links:
+      - prometheus
