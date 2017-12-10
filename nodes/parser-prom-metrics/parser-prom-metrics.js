@@ -4,8 +4,6 @@ module.exports = function(RED) {
         RED.nodes.createNode(this, config);
         var node = this;
         node.on('input', function(msg) {
-            msg.payload = msg.payload.toLowerCase();
-
             var payload = msg.payload.split('\n');
             var metrics = [];
             metrics = payload.filter(function(item) {
